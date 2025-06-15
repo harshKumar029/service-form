@@ -68,7 +68,7 @@ export default function MultiStepForm() {
   if (submitted) {
     return (
       <main className="flex items-center justify-center min-h-screen bg-gradient-to-br from-sky-100 to-indigo-200">
-        <div className="bg-white p-10 rounded-xl shadow-2xl text-center max-w-lg w-full">
+        <div className="sm:bg-white p-10 rounded-xl sm:shadow-2xl text-center max-w-lg w-full">
           <h2 className="text-3xl font-bold text-green-600 mb-4">🎉 Thank You!</h2>
           <p className="text-gray-700">
             Your request has been successfully submitted.
