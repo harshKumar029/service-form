@@ -37,7 +37,7 @@ export default function MultiStepForm() {
         return (
           formData.parentName &&
           formData.email &&
-          /\S+@\S+\.\S+/.test(formData.email) && // basic email check
+          /\S+@\S+\.\S+/.test(formData.email) &&
           formData.phone
         );
       default:
@@ -49,7 +49,7 @@ export default function MultiStepForm() {
     if (validateStep()) {
       setStep((prev) => prev + 1);
     } else {
-      alert("Please fill out all required fields correctly before proceeding.");
+      alert("Please fill in all required fields before proceeding.");
     }
   };
 
@@ -68,9 +68,9 @@ export default function MultiStepForm() {
   if (submitted) {
     return (
       <main className="flex items-center justify-center min-h-screen bg-gradient-to-br from-sky-100 to-indigo-200">
-        <div className="bg-white p-16 rounded-2xl shadow-2xl text-center max-w-xl w-full">
-          <h2 className="text-4xl font-bold text-green-600 mb-4">🎉 Thank You!</h2>
-          <p className="text-lg text-gray-700">
+        <div className="bg-white p-10 rounded-xl shadow-2xl text-center max-w-lg w-full">
+          <h2 className="text-3xl font-bold text-green-600 mb-4">🎉 Thank You!</h2>
+          <p className="text-gray-700">
             Your request has been successfully submitted.
           </p>
         </div>
@@ -79,18 +79,19 @@ export default function MultiStepForm() {
   }
 
   return (
-    <main className="flex items-center justify-center min-h-screen bg-gradient-to-br from-sky-100 to-indigo-200 px-6">
+    <main className="flex items-center justify-center min-h-screen sm:bg-gradient-to-br from-sky-100 to-indigo-200 px-4">
       <form
         onSubmit={handleSubmit}
-        className="bg-white rounded-2xl shadow-2xl p-10 md:p-16 w-full max-w-4xl space-y-10"
+        className="bg-white rounded-2xl sm:shadow-2xl p-8 md:p-12 w-full max-w-2xl space-y-8"
       >
-        <h1 className="text-3xl font-bold text-center text-indigo-700">
+        {/* Title */}
+        <h1 className="text-2xl md:text-3xl font-bold text-center text-indigo-700">
           Learning Support Request Form
         </h1>
 
         {/* Progress Bar */}
         <div>
-          <div className="flex justify-between mb-3 text-sm font-semibold text-gray-600">
+          <div className="flex justify-between mb-2 text-sm font-medium text-gray-600">
             <span className={step >= 1 ? "text-indigo-700" : ""}>Step 1</span>
             <span className={step >= 2 ? "text-indigo-700" : ""}>Step 2</span>
             <span className={step === 3 ? "text-indigo-700" : ""}>Step 3</span>
@@ -110,33 +111,35 @@ export default function MultiStepForm() {
         {step === 3 && <Step3 formData={formData} handleChange={handleChange} />}
 
         {/* Navigation Buttons */}
-        <div className="flex justify-end gap-4 pt-8">
+        <div className="flex flex-col md:flex-row justify-between pt-6 gap-4">
           {step > 1 && (
             <button
               type="button"
               onClick={prevStep}
-              className="px-8 py-3 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-transform hover:scale-105"
+              className="px-6 py-3 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition"
             >
               Back
             </button>
           )}
-          {step < 3 && (
-            <button
-              type="button"
-              onClick={nextStep}
-              className="px-8 py-3 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-transform hover:scale-105"
-            >
-              Next
-            </button>
-          )}
-          {step === 3 && (
-            <button
-              type="submit"
-              className="px-8 py-3 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-transform hover:scale-105"
-            >
-              Submit
-            </button>
-          )}
+          <div className="flex gap-4 md:ml-auto">
+            {step < 3 && (
+              <button
+                type="button"
+                onClick={nextStep}
+                className="px-6 py-3 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition"
+              >
+                Next
+              </button>
+            )}
+            {step === 3 && (
+              <button
+                type="submit"
+                className="px-6 py-3 rounded-lg bg-green-600 text-white hover:bg-green-700 transition"
+              >
+                Submit
+              </button>
+            )}
+          </div>
         </div>
       </form>
     </main>
