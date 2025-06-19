@@ -34,10 +34,14 @@ export default function Step3({ formData, handleChange }) {
           name="phone"
           value={formData.phone || ""}
           onChange={handleChange}
-          placeholder="+1234567890"
+          placeholder="1234567890"
+          pattern="\d{10}"
+          minLength={10}
+          maxLength={10}
           className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           required
         />
+        <p className="text-sm text-gray-500 mt-1">Phone number must be exactly 10 digits.</p>
       </div>
     </div>
   );
